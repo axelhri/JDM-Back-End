@@ -12,6 +12,7 @@ import errorHandler from "./middlewares/error-handler.js";
 import notFound from "./middlewares/not-found.middleware.js";
 import { auth } from "./features/auth/index.js";
 import { products } from "./features/products/index.js";
+import { baskets } from "./features/basket/index.js";
 import { StatusCodes } from "http-status-codes";
 
 const app = express();
@@ -41,6 +42,7 @@ app.get("/", (_req, res) => {
 
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/products", products);
+app.use("/api/v1/basket", baskets);
 
 app.use(notFound);
 app.use(errorHandler);
