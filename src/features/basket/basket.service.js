@@ -33,9 +33,14 @@ const createMultiple = async (data, price, userId) => {
  */
 const getAllBaskets = async () => {
   try {
-    // Récupère tous les paniers, sans tenir compte de l'utilisateur
+    // Récupère tous les paniers avec leurs prix
     const allBasketsDocument = await baskets.find({});
-    return allBasketsDocument.map((doc) => doc.baskets).flat();
+
+    // Renvoie un tableau d'objets, chaque objet contient un panier avec des produits et un prix
+    return allBasketsDocument.map((doc) => ({
+      baskets: doc.baskets, // Liste des produits
+      price: doc.price, // Prix global
+    }));
   } catch (error) {
     throw new Error("Erreur lors de la récupération des produits.");
   }

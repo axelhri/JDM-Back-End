@@ -16,9 +16,12 @@ const create = async (req, res) => {
       price,
       req.user.userId
     );
-    res
-      .status(StatusCodes.CREATED)
-      .json({ baskets: updatedBasketDocument.baskets });
+
+    // Retourne le panier et le prix dans la réponse
+    res.status(StatusCodes.CREATED).json({
+      baskets: updatedBasketDocument.baskets,
+      price: updatedBasketDocument.price, // Ajoutez le prix ici
+    });
   } catch (error) {
     res.status(StatusCodes.BAD_REQUEST).json({ message: error.message });
   }
@@ -31,9 +34,16 @@ const create = async (req, res) => {
  */
 const get = async (req, res) => {
   try {
-    // Récupère tous les produits disponibles dans le système
+    // Récupère tous les paniers disponibles dans le système
     const allBaskets = await basketService.getAllBaskets();
-    res.status(StatusCodes.OK).json({ products: allBaskets });
+
+    // Construire la réponse en incluant à la fois les produits et les prix
+    const response = allBaskets.map((basket) => ({
+      baskets: basket.baskets, // les produits du panier
+      price: basket.price, // le prix global du panier
+    }));
+
+    res.status(StatusCodes.OK).json({ baskets: response });
   } catch (error) {
     res.status(StatusCodes.NOT_FOUND).json({ message: error.message });
   }

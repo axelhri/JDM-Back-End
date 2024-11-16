@@ -9,7 +9,7 @@ const BasketSchema = new Schema(
           required: [true, "Veuillez fournir un nom de produit"],
           maxlength: 50,
         },
-        // Vous pouvez ajouter d'autres champs pour chaque produit si nécessaire
+        // Autres champs possibles
       },
     ],
     price: {
@@ -21,7 +21,7 @@ const BasketSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: [true, "Veuillez fournir un utilisateur"],
-      unique: true, // Un seul document par utilisateur
+      unique: true,
     },
   },
   { timestamps: true }
