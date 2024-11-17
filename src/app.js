@@ -5,15 +5,14 @@ import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 import mongoSanitize from "express-mongo-sanitize";
 import cors from "cors";
-import YAML from "yamljs";
 import connectDB from "./config/db.config.js";
-import authenticateUser from "./middlewares/auth.middleware.js";
 import errorHandler from "./middlewares/error-handler.js";
 import notFound from "./middlewares/not-found.middleware.js";
 import { auth } from "./features/auth/index.js";
 import { products } from "./features/products/index.js";
 import { baskets } from "./features/basket/index.js";
 import { StatusCodes } from "http-status-codes";
+import sendEmail from "./features/email/email.controller.js";
 
 const app = express();
 
@@ -43,6 +42,8 @@ app.get("/", (_req, res) => {
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/products", products);
 app.use("/api/v1/basket", baskets);
+
+app.post("/api/v1/emails/send", sendEmail);
 
 app.use(notFound);
 app.use(errorHandler);
