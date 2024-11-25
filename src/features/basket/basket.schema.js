@@ -3,7 +3,9 @@ import { z } from "zod";
 // Schéma de validation pour un produit
 const BasketBodySchema = z.object({
   name: z.string().trim().min(1, { message: "Le nom est requis" }),
-  // Vous pouvez ajouter d'autres champs pour chaque produit
+  quantity: z
+    .number()
+    .min(0, { message: "Le nombre doit être un nombre positif" }),
 });
 
 // Schéma de validation pour un tableau de produits

@@ -9,7 +9,11 @@ const BasketSchema = new Schema(
           required: [true, "Veuillez fournir un nom de produit"],
           maxlength: 50,
         },
-        // Autres champs possibles
+        quantity: {
+          type: Number,
+          required: [true, "Veuillez fournir un nombre"],
+          min: [0, "Le nombre doit être positif"],
+        },
       },
     ],
     price: {
