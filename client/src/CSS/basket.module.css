@@ -1,0 +1,209 @@
+:root {
+  /* primary */
+  --clr-primary-50: #ecfdf6;
+  --clr-primary-100: #d1fae6;
+  --clr-primary-200: #a8f2d2;
+  --clr-primary-300: #6fe6bb;
+  --clr-primary-400: #36d19e;
+  --clr-primary-500: #12b785;
+  --clr-primary-600: #07946c;
+  --clr-primary-700: #05775a;
+  --clr-primary-800: #075e49;
+  --clr-primary-900: #07503f;
+  --clr-primary-950: #022c23;
+
+  /* nuance */
+  --clr-nuance-50: #f6f6f6;
+  --clr-nuance-100: #e7e7e7;
+  --clr-nuance-200: #d1d1d1;
+  --clr-nuance-300: #b0b0b0;
+  --clr-nuance-400: #888888;
+  --clr-nuance-500: #6d6d6d;
+  --clr-nuance-600: #5d5d5d;
+  --clr-nuance-700: #4f4f4f;
+  --clr-nuance-800: #454545;
+  --clr-nuance-900: #3d3d3d;
+  --clr-nuance-950: #000000;
+
+  --clr-black: #000000;
+  --clr-white: #ffffff;
+  --offwhite: #e8e7dd;
+
+  /* font family */
+  --ff-poppins: "Poppins", sans-serif;
+  --ff-open: "Open Sans", serif;
+  --ff-outfit: "Outfit", sans-serif;
+  --ff-amatic: "Amatic SC", sans-serif;
+  --ff-karla: "Karla", sans-serif;
+
+  /* misc */
+  --transition-02: all 0.2s ease-in-out;
+  --transition-04: all 0.4s ease-in-out;
+}
+
+#basket {
+  min-block-size: 20vh;
+  background: var(--offwhite);
+  padding-block: 2rem;
+}
+
+.basketContainer {
+  inline-size: 90%;
+  margin-inline: auto;
+  margin-block-start: 2rem;
+}
+
+.basketContainer article {
+  inline-size: max-content;
+  margin-inline: auto;
+}
+
+h4 {
+  font-family: var(--ff-poppins);
+  color: var(--clr-primary-700);
+  font-size: 1.8em;
+  margin-block-end: 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  inline-size: max-content;
+  margin-inline: auto;
+}
+
+.weeklyBasket {
+  text-align: center;
+  font-family: var(--ff-poppins);
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--clr-primary-800);
+}
+
+.basketImg {
+  inline-size: 15rem;
+  margin-inline: auto;
+}
+
+.basketImg img {
+  filter: grayscale(0.3);
+}
+
+.basketList {
+  font-family: var(--ff-karla);
+  font-size: 1.2rem;
+  font-weight: 500;
+  max-inline-size: 20rem;
+  overflow-wrap: break-word;
+  gap: 1rem;
+  inline-size: max-content;
+  margin-inline: auto;
+  list-style: disc;
+  inline-size: 70%;
+  position: relative;
+}
+
+.basketPrice {
+  font-family: var(--ff-outfit);
+  font-size: 1.5rem;
+  background: var(--clr-primary-600);
+  color: white;
+  inline-size: max-content;
+  padding: 0.2rem 1rem;
+  margin-block-start: 1rem;
+  margin-inline: auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.otherBaskets {
+  inline-size: 80vw;
+  margin-inline: auto;
+  margin-block-start: 3rem;
+}
+
+.otherBaskets p {
+  border-radius: 7px;
+  font-family: var(--ff-karla);
+  padding: 0.5rem;
+  background: #cccbbd;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.otherBaskets p a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.otherBaskets p a:hover {
+  color: #419ef5;
+}
+
+.basketImgsContainer {
+  margin-block-start: 2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.basketImgBox {
+  overflow: hidden;
+}
+
+.basketImgBox:hover > img {
+  transform: scale(1.03);
+  filter: brightness(1);
+}
+
+.basketImgBox img {
+  filter: brightness(0.9);
+  block-size: 200px;
+  inline-size: 100%;
+  transition: var(--transition-04);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* min 600px */
+
+@media screen and (min-width: 600px) {
+  .basketImgsContainer {
+    margin-block-start: 2rem;
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* min 1000px */
+
+@media screen and (min-width: 1000px) {
+  .basketImg {
+    inline-size: 20rem;
+  }
+
+  h4 {
+    font-size: 2em;
+  }
+
+  .basketList {
+    font-size: 1.5rem;
+  }
+
+  .basketPrice {
+    font-size: 1.8rem;
+    margin-block-start: 1.5rem;
+  }
+
+  .otherBaskets {
+    inline-size: 65vw;
+    font-size: 1.3rem;
+  }
+  .basketImgBox img {
+    filter: brightness(0.9);
+    block-size: 300px;
+    inline-size: 100%;
+  }
+  .basketImgsContainer {
+    margin-inline: auto;
+    inline-size: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
