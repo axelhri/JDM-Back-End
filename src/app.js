@@ -33,6 +33,13 @@ app.use(express.json());
 
 connectDB();
 
+app.use(express.static(path.join(__dirname, "build")));
+
+// Rediriger toutes les autres requêtes vers index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
+
 app.get("/", (_req, res) => {
   res
     .status(StatusCodes.OK)
