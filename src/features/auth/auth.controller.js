@@ -6,7 +6,6 @@ const register = async (req, res) => {
   const userCount = await usersService.count();
 
   if (userCount >= 1) {
-    // Si un utilisateur existe déjà, interdire la création de nouveaux comptes
     return res
       .status(StatusCodes.FORBIDDEN)
       .json({ message: "La limite d’utilisateurs est atteinte." });

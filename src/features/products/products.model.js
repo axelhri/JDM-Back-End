@@ -24,7 +24,7 @@ const ProductSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: [true, "Veuillez fournir un utilisateur"],
-      unique: true, // Un seul document par utilisateur
+      unique: true,
     },
   },
   { timestamps: true }

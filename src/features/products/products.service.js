@@ -7,20 +7,17 @@ import products from "./products.model.js";
  * @returns {Promise<Object>} Le document utilisateur mis à jour avec les nouveaux produits.
  */
 const createMultiple = async (data, userId) => {
-  // Vérifie si un document existe déjà pour cet utilisateur
   const existingDocument = await products.findOne({ createdBy: userId });
 
   if (!existingDocument) {
-    // Si aucun produit n'existe, crée un nouveau document
     const newProductDocument = new products({
-      products: data, // Remplacer complètement les produits existants par le nouveau tableau
+      products: data,
       createdBy: userId,
     });
     return newProductDocument.save();
   }
 
-  // Sinon, remplace les produits existants par les nouveaux produits
-  existingDocument.products = data; // Remplacer l'ancien tableau par le nouveau
+  existingDocument.products = data;
   return existingDocument.save();
 };
 
@@ -30,7 +27,6 @@ const createMultiple = async (data, userId) => {
  * @returns {Promise<Object>} Le tableau de produits de l'utilisateur.
  */
 const getProducts = async (userId) => {
-  // Recherche les produits de l'utilisateur
   const userProducts = await products.findOne({ createdBy: userId });
 
   if (!userProducts) {
@@ -46,7 +42,6 @@ const getProducts = async (userId) => {
  */
 const getAllProducts = async () => {
   try {
-    // Récupère tous les produits, sans tenir compte de l'utilisateur
     const allProductsDocument = await products.find({});
     return allProductsDocument.map((doc) => doc.products).flat();
   } catch (error) {

@@ -29,7 +29,6 @@ const create = async (req, res) => {
  */
 const get = async (req, res) => {
   try {
-    // Récupère tous les produits disponibles dans le système
     const allProducts = await productService.getAllProducts();
     res.status(StatusCodes.OK).json({ products: allProducts });
   } catch (error) {

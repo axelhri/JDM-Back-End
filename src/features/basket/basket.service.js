@@ -8,22 +8,19 @@ import baskets from "./basket.model.js";
  * @returns {Promise<Object>} Le document utilisateur mis à jour avec les nouveaux produits.
  */
 const createMultiple = async (data, price, userId) => {
-  // Vérifie si un document existe déjà pour cet utilisateur
   const existingDocument = await baskets.findOne({ createdBy: userId });
 
   if (!existingDocument) {
-    // Si aucun panier n'existe, crée un nouveau document
     const newBasketDocument = new baskets({
-      baskets: data, // Remplacer complètement les produits existants par le nouveau tableau
+      baskets: data,
       price: price,
       createdBy: userId,
     });
     return newBasketDocument.save();
   }
 
-  // Sinon, remplace les produits existants par les nouveaux produits et met à jour le prix
-  existingDocument.baskets = data; // Remplacer l'ancien tableau par le nouveau
-  existingDocument.price = price; // Met à jour le prix du panier
+  existingDocument.baskets = data;
+  existingDocument.price = price;
   return existingDocument.save();
 };
 
@@ -33,13 +30,11 @@ const createMultiple = async (data, price, userId) => {
  */
 const getAllBaskets = async () => {
   try {
-    // Récupère tous les paniers avec leurs prix
     const allBasketsDocument = await baskets.find({});
 
-    // Renvoie un tableau d'objets, chaque objet contient un panier avec des produits et un prix
     return allBasketsDocument.map((doc) => ({
-      baskets: doc.baskets, // Liste des produits
-      price: doc.price, // Prix global
+      baskets: doc.baskets,
+      price: doc.price,
     }));
   } catch (error) {
     throw new Error("Erreur lors de la récupération des produits.");
